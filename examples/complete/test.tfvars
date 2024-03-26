@@ -14,7 +14,7 @@ project_id = "<PROJECT_ID>"
 
 repository = {
   repo_type             = "GitHub"
-  repo_id               = "nexient-llc/demo-azure-resource-group"
+  repo_id               = "launchbynttdata/demo-azure-resource-group"
   github_enterprise_url = "https://github.company.com"
   branch_name           = "main"
   yml_path              = "internals/pipelines/pipeline.yml"
