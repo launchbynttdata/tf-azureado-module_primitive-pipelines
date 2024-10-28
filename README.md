@@ -5,7 +5,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.5.5 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
 | <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | ~> 0.11.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.96.0 |
 
@@ -30,7 +30,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | (Required) The project ID or project name. | `string` | n/a | yes |
-| <a name="input_name"></a> [name](#input\_name) | The name of the build definition. | `string` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | The name of the build definition. | `string` | n/a | yes |
 | <a name="input_path"></a> [path](#input\_path) | The folder path of the build definition. | `string` | `null` | no |
 | <a name="input_agent_pool_name"></a> [agent\_pool\_name](#input\_agent\_pool\_name) | The agent pool that should execute the build. Defaults to Azure Pipelines. | `string` | `"Azure Pipelines"` | no |
 | <a name="input_ci_trigger"></a> [ci\_trigger](#input\_ci\_trigger) | The repository block as documented below. | <pre>object({<br>    use_yaml = optional(bool)<br>    override = optional(object({<br>      batch = optional(bool)<br>      branch_filter = optional(object({<br>        include = optional(list(string))<br>        exclude = optional(list(string))<br>      }))<br>      path_filter = optional(object({<br>        include = optional(list(string))<br>        exclude = optional(list(string))<br>      }))<br>      max_concurrent_builds_per_branch = number<br>      polling_interval                 = number<br>      polling_job_id                   = string<br>    }))<br>  })</pre> | <pre>{<br>  "use_yaml": false<br>}</pre> | no |
@@ -38,8 +38,8 @@ No modules.
 | <a name="input_variable_groups"></a> [variable\_groups](#input\_variable\_groups) | A list of variable group IDs (integers) to link to the build definition. Defaults to {}. | `list(number)` | `null` | no |
 | <a name="input_features"></a> [features](#input\_features) | A list of variable group IDs (integers) to link to the build definition. Defaults to {}. | <pre>object({<br>    skip_first_run = optional(bool)<br>  })</pre> | `{}` | no |
 | <a name="input_queue_status"></a> [queue\_status](#input\_queue\_status) | The queue status of the build definition. Valid values: enabled or paused or disabled. Defaults to enabled. | `string` | `"enabled"` | no |
-| <a name="input_schedules"></a> [schedules](#input\_schedules) | The repository block as documented below. | <pre>object({<br>    days_to_build              = list(string)<br>    schedule_only_with_changes = optional(bool)<br>    start_hours                = optional(string)<br>    start_minutes              = optional(string)<br>    time_zone                  = optional(string)<br>    branch_filter = optional(object({<br>      include = optional(list(string))<br>      exclude = optional(list(string))<br>    }))<br>  })</pre> | n/a | yes |
-| <a name="input_repository"></a> [repository](#input\_repository) | The repository block as documented below. | <pre>object({<br>    branch_name           = string<br>    repo_id               = string<br>    repo_type             = string<br>    service_connection_id = string<br>    yml_path              = optional(string)<br>    github_enterprise_url = optional(string)<br>    report_build_status   = optional(bool)<br>  })</pre> | n/a | yes |
+| <a name="input_schedules"></a> [schedules](#input\_schedules) | The schedules block as documented below. | <pre>object({<br>    days_to_build              = list(string)<br>    schedule_only_with_changes = optional(bool)<br>    start_hours                = optional(string)<br>    start_minutes              = optional(string)<br>    time_zone                  = optional(string)<br>    branch_filter = optional(object({<br>      include = optional(list(string))<br>      exclude = optional(list(string))<br>    }))<br>  })</pre> | `null` | no |
+| <a name="input_repository"></a> [repository](#input\_repository) | The repository block as documented below. | <pre>object({<br>    branch_name           = string<br>    repo_id               = string<br>    repo_type             = string<br>    service_connection_id = optional(string)<br>    yml_path              = optional(string)<br>    github_enterprise_url = optional(string)<br>    report_build_status   = optional(bool)<br>  })</pre> | n/a | yes |
 
 ## Outputs
 
