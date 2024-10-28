@@ -15,13 +15,18 @@ variable "project_id" {
   type        = string
 }
 
+variable "name" {
+  description = "The name of the build definition."
+  type        = string
+}
+
 variable "repository" {
   description = "The repository block as documented below."
   type = object({
     branch_name           = string
     repo_id               = string
     repo_type             = string
-    service_connection_id = string
+    service_connection_id = optional(string)
     yml_path              = optional(string)
     github_enterprise_url = optional(string)
     report_build_status   = optional(bool)
@@ -41,4 +46,5 @@ variable "schedules" {
       exclude = optional(list(string))
     }))
   })
+  default = null
 }

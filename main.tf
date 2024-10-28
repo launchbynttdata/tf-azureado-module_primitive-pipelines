@@ -94,18 +94,22 @@ resource "azuredevops_build_definition" "build_definition" {
     report_build_status   = var.repository.report_build_status
   }
 
-  schedules {
-    dynamic "branch_filter" {
-      for_each = var.schedules.branch_filter != null ? [var.schedules.branch_filter] : []
-      content {
-        include = var.schedules.branch_filter.include
-        exclude = var.schedules.branch_filter.exclude
+  dynamic "schedules" {
+    for_each = var.schedules != null ? ["schedules"] : []
+
+    content {
+      dynamic "branch_filter" {
+        for_each = var.schedules.branch_filter != null ? [var.schedules.branch_filter] : []
+        content {
+          include = var.schedules.branch_filter.include
+          exclude = var.schedules.branch_filter.exclude
+        }
       }
+      days_to_build              = var.schedules.days_to_build
+      schedule_only_with_changes = var.schedules.schedule_only_with_changes
+      start_hours                = var.schedules.start_hours
+      start_minutes              = var.schedules.start_minutes
+      time_zone                  = var.schedules.time_zone
     }
-    days_to_build              = var.schedules.days_to_build
-    schedule_only_with_changes = var.schedules.schedule_only_with_changes
-    start_hours                = var.schedules.start_hours
-    start_minutes              = var.schedules.start_minutes
-    time_zone                  = var.schedules.time_zone
   }
 }

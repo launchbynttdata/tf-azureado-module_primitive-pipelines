@@ -18,7 +18,6 @@ variable "project_id" {
 variable "name" {
   description = "The name of the build definition."
   type        = string
-  default     = null
 }
 
 variable "path" {
@@ -108,7 +107,7 @@ variable "queue_status" {
 }
 
 variable "schedules" {
-  description = "The repository block as documented below."
+  description = "The schedules block as documented below."
   type = object({
     days_to_build              = list(string)
     schedule_only_with_changes = optional(bool)
@@ -120,6 +119,7 @@ variable "schedules" {
       exclude = optional(list(string))
     }))
   })
+  default = null
 }
 
 variable "repository" {
@@ -128,7 +128,7 @@ variable "repository" {
     branch_name           = string
     repo_id               = string
     repo_type             = string
-    service_connection_id = string
+    service_connection_id = optional(string)
     yml_path              = optional(string)
     github_enterprise_url = optional(string)
     report_build_status   = optional(bool)
