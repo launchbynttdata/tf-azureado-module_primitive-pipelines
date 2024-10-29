@@ -77,6 +77,7 @@ variable "pull_request_trigger" {
       }))
     }))
   })
+  nullable = true
   default = {
     use_yaml = false
     forks = {
