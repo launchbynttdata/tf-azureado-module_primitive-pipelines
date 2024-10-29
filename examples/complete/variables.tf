@@ -20,6 +20,37 @@ variable "name" {
   type        = string
 }
 
+variable "pull_request_trigger" {
+  description = "Pull Request Integration trigger."
+  type = object({
+    use_yaml       = bool
+    initial_branch = optional(string)
+    forks = object({
+      enabled       = bool
+      share_secrets = bool
+    })
+    override = optional(object({
+      auto_cancel = bool
+      branch_filter = optional(object({
+        include = optional(list(string))
+        exclude = optional(list(string))
+      }))
+      path_filter = optional(object({
+        include = optional(list(string))
+        exclude = optional(list(string))
+      }))
+    }))
+  })
+  nullable = true
+  default = {
+    use_yaml = false
+    forks = {
+      enabled       = false
+      share_secrets = false
+    }
+  }
+}
+
 variable "repository" {
   description = "The repository block as documented below."
   type = object({
