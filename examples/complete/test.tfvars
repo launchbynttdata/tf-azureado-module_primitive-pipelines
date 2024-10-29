@@ -12,6 +12,8 @@
 
 project_id = "<PROJECT_ID>"
 
+name = "demo-pipeline"
+
 repository = {
   repo_type             = "GitHub"
   repo_id               = "launchbynttdata/demo-azure-resource-group"

@@ -13,6 +13,7 @@
 module "pipeline" {
   source = "../.."
 
+  name       = var.name
   project_id = var.project_id
   repository = var.repository
   schedules  = var.schedules
