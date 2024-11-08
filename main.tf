@@ -10,6 +10,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+data "azuredevops_git_repository" "repo" {
+  project_id = var.project_id
+  name       = var.repository.repo_id
+}
+
 resource "azuredevops_build_definition" "build_definition" {
   project_id      = var.project_id
   name            = var.name
@@ -86,7 +91,7 @@ resource "azuredevops_build_definition" "build_definition" {
 
   repository {
     branch_name           = var.repository.branch_name
-    repo_id               = var.repository.repo_id
+    repo_id               = data.azuredevops_git_repository.repo.id
     repo_type             = var.repository.repo_type
     service_connection_id = var.repository.service_connection_id
     yml_path              = var.repository.yml_path
