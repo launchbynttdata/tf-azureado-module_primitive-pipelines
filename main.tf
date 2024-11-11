@@ -10,6 +10,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+data "azuredevops_project" "project" {
+  count = (var.repository.repo_type == "TfsGit") ? 1 : 0
+
+  name = var.project_id
+}
+
+data "azuredevops_git_repository" "repo" {
+  count = (var.repository.repo_type == "TfsGit") ? 1 : 0
+
+  project_id = data.azuredevops_project.project[0].id
+  name       = var.repository.repo_id
+}
+
 resource "azuredevops_build_definition" "build_definition" {
   project_id      = var.project_id
   name            = var.name
@@ -86,7 +99,7 @@ resource "azuredevops_build_definition" "build_definition" {
 
   repository {
     branch_name           = var.repository.branch_name
-    repo_id               = var.repository.repo_id
+    repo_id               = var.repository.repo_type == "TfsGit" ? data.azuredevops_git_repository.repo[0].id : var.repository.repo_id
     repo_type             = var.repository.repo_type
     service_connection_id = var.repository.service_connection_id
     yml_path              = var.repository.yml_path
