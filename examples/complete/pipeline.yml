@@ -1,7 +1,8 @@
 trigger:
   branches:
     include:
-      - feature/terratest-for-az-pipeline
+      - feature/support-github-account
+      - main
 
 stages:
   - stage: Build
