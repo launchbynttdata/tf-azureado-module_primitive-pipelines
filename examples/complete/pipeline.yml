@@ -1,0 +1,40 @@
+trigger:
+  branches:
+    include:
+      - feature/terratest-for-az-pipeline
+
+stages:
+  - stage: Build
+    displayName: 'Build Stage'
+    jobs:
+      - job: BuildJob
+        displayName: 'Build Job'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script: echo "Building project..."
+            displayName: 'Build Project'
+
+  - stage: Test
+    displayName: 'Test Stage'
+    dependsOn: Build
+    jobs:
+      - job: TestJob
+        displayName: 'Test Job'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script: echo "Running tests..."
+            displayName: 'Run Tests'
+
+  - stage: Deploy
+    displayName: 'Deploy Stage'
+    dependsOn: Test
+    jobs:
+      - job: DeployJob
+        displayName: 'Deploy Job'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script: echo "Deploying application..."
+            displayName: 'Deploy Application'

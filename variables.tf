@@ -32,6 +32,18 @@ variable "agent_pool_name" {
   default     = "Azure Pipelines"
 }
 
+variable "personal_access_token" {
+  description = "The personal access token for the service connection."
+  type        = string
+  default     = null
+}
+
+variable "service_connection_name" {
+  description = "The name of the service connection."
+  type        = string
+  default     = null
+}
+
 variable "ci_trigger" {
   description = "The repository block as documented below."
   type = object({

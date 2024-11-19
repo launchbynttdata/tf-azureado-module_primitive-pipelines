@@ -79,3 +79,15 @@ variable "schedules" {
   })
   default = null
 }
+
+variable "personal_access_token" {
+  description = "The personal access token for the service connection."
+  type        = string
+  default     = null
+}
+
+variable "service_connection_name" {
+  description = "The name of the service connection."
+  type        = string
+  default     = null
+}
