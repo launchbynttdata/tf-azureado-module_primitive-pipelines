@@ -11,15 +11,16 @@
 // limitations under the License.
 
 project_id = "platform-accelerators"
-
+name       = "demo-pipeline"
 repository = {
-  repo_type             = "GitHub"
-  repo_id               = "launchbynttdata/tf-azureado-module_primitive-pipelines"
-  branch_name           = "feature/support-github-account"
-  yml_path              = "examples/complete/pipeline.yml"
+  repo_type   = "GitHub"
+  repo_id     = "launchbynttdata/tf-azureado-module_primitive-pipelines"
+  branch_name = "feature/support-github-account"
+  yml_path    = "examples/complete/pipeline.yml"
 }
 
-personal_access_token = ""
+service_connection_name = "github_connection"
+pull_request_trigger    = null
 
 schedules = {
   branch_filter = {

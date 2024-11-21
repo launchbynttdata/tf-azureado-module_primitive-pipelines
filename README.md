@@ -26,6 +26,7 @@ No modules.
 | [azuredevops_build_definition.build_definition](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/build_definition) | resource |
 | [azuredevops_git_repository.repo](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/git_repository) | data source |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/project) | data source |
+| [azuredevops_serviceendpoint_github.github_connection](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/serviceendpoint_github) | data source |
 
 ## Inputs
 
@@ -35,6 +36,7 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | The name of the build definition. | `string` | n/a | yes |
 | <a name="input_path"></a> [path](#input\_path) | The folder path of the build definition. | `string` | `null` | no |
 | <a name="input_agent_pool_name"></a> [agent\_pool\_name](#input\_agent\_pool\_name) | The agent pool that should execute the build. Defaults to Azure Pipelines. | `string` | `"Azure Pipelines"` | no |
+| <a name="input_service_connection_name"></a> [service\_connection\_name](#input\_service\_connection\_name) | The name of the service connection. | `string` | `null` | no |
 | <a name="input_ci_trigger"></a> [ci\_trigger](#input\_ci\_trigger) | The repository block as documented below. | <pre>object({<br>    use_yaml = optional(bool)<br>    override = optional(object({<br>      batch = optional(bool)<br>      branch_filter = optional(object({<br>        include = optional(list(string))<br>        exclude = optional(list(string))<br>      }))<br>      path_filter = optional(object({<br>        include = optional(list(string))<br>        exclude = optional(list(string))<br>      }))<br>      max_concurrent_builds_per_branch = number<br>      polling_interval                 = number<br>      polling_job_id                   = string<br>    }))<br>  })</pre> | <pre>{<br>  "use_yaml": false<br>}</pre> | no |
 | <a name="input_pull_request_trigger"></a> [pull\_request\_trigger](#input\_pull\_request\_trigger) | Pull Request Integration trigger. | <pre>object({<br>    use_yaml       = bool<br>    initial_branch = optional(string)<br>    forks = object({<br>      enabled       = bool<br>      share_secrets = bool<br>    })<br>    override = optional(object({<br>      auto_cancel = bool<br>      branch_filter = optional(object({<br>        include = optional(list(string))<br>        exclude = optional(list(string))<br>      }))<br>      path_filter = optional(object({<br>        include = optional(list(string))<br>        exclude = optional(list(string))<br>      }))<br>    }))<br>  })</pre> | <pre>{<br>  "forks": {<br>    "enabled": false,<br>    "share_secrets": false<br>  },<br>  "use_yaml": false<br>}</pre> | no |
 | <a name="input_variable_groups"></a> [variable\_groups](#input\_variable\_groups) | A list of variable group IDs (integers) to link to the build definition. Defaults to {}. | `list(number)` | `null` | no |
