@@ -19,7 +19,8 @@ repository = {
   yml_path    = "examples/complete/pipeline.yml"
 }
 
-service_connection_name = "github_connection"
+#Please provide the service connection name for the GitHub repository
+service_connection_name = "<Service Connection Name>"
 pull_request_trigger    = null
 
 schedules = {
