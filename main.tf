@@ -19,7 +19,7 @@ data "azuredevops_project" "project" {
 data "azuredevops_serviceendpoint_github" "github_connection" {
   count = (var.repository.repo_type == "GitHub") ? 1 : 0
 
-  service_endpoint_name = var.service_connection_name
+  service_endpoint_name = var.repository.service_connection_id
   project_id            = data.azuredevops_project.project[0].id
 }
 

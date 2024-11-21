@@ -13,15 +13,14 @@
 project_id = "platform-accelerators"
 name       = "demo-pipeline"
 repository = {
-  repo_type   = "GitHub"
-  repo_id     = "launchbynttdata/tf-azureado-module_primitive-pipelines"
-  branch_name = "feature/support-github-account"
-  yml_path    = "examples/complete/pipeline.yml"
+  repo_type             = "GitHub"
+  repo_id               = "launchbynttdata/tf-azureado-module_primitive-pipelines"
+  branch_name           = "main"
+  yml_path              = "examples/complete/pipeline.yml"
+  service_connection_id = "<Service Connection Name>" #Please provide the service connection name for the GitHub repository
 }
 
-#Please provide the service connection name for the GitHub repository
-service_connection_name = "<Service Connection Name>"
-pull_request_trigger    = null
+pull_request_trigger = null
 
 schedules = {
   branch_filter = {

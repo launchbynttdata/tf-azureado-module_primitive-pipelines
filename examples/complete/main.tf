@@ -13,10 +13,9 @@
 module "pipeline" {
   source = "../.."
 
-  name                    = var.name
-  project_id              = var.project_id
-  pull_request_trigger    = var.pull_request_trigger
-  repository              = var.repository
-  schedules               = var.schedules
-  service_connection_name = var.service_connection_name
+  name                 = var.name
+  project_id           = var.project_id
+  pull_request_trigger = var.pull_request_trigger
+  repository           = var.repository
+  schedules            = var.schedules
 }
