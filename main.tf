@@ -11,9 +11,16 @@
 // limitations under the License.
 
 data "azuredevops_project" "project" {
-  count = (var.repository.repo_type == "TfsGit") ? 1 : 0
+  count = (var.repository.repo_type == "TfsGit" || var.repository.repo_type == "GitHub") ? 1 : 0
 
   name = var.project_id
+}
+
+data "azuredevops_serviceendpoint_github" "github_connection" {
+  count = (var.repository.repo_type == "GitHub") ? 1 : 0
+
+  service_endpoint_name = var.repository.service_connection_id
+  project_id            = data.azuredevops_project.project[0].id
 }
 
 data "azuredevops_git_repository" "repo" {
@@ -101,7 +108,7 @@ resource "azuredevops_build_definition" "build_definition" {
     branch_name           = var.repository.branch_name
     repo_id               = var.repository.repo_type == "TfsGit" ? data.azuredevops_git_repository.repo[0].id : var.repository.repo_id
     repo_type             = var.repository.repo_type
-    service_connection_id = var.repository.service_connection_id
+    service_connection_id = var.repository.repo_type == "GitHub" ? data.azuredevops_serviceendpoint_github.github_connection[0].service_endpoint_id : null
     yml_path              = var.repository.yml_path
     github_enterprise_url = var.repository.github_enterprise_url
     report_build_status   = var.repository.report_build_status

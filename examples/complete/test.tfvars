@@ -10,18 +10,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-project_id = "<PROJECT_ID>"
-
-name = "demo-pipeline"
-
+project_id = "platform-accelerators"
+name       = "demo-pipeline"
 repository = {
   repo_type             = "GitHub"
-  repo_id               = "launchbynttdata/demo-azure-resource-group"
-  github_enterprise_url = "https://github.company.com"
+  repo_id               = "launchbynttdata/tf-azureado-module_primitive-pipelines"
   branch_name           = "main"
-  yml_path              = "internals/pipelines/pipeline.yml"
-  service_connection_id = "<SERVICE_CONNECTION_ID>"
+  yml_path              = "examples/complete/pipeline.yml"
+  service_connection_id = "<Service Connection Name>" #Please provide the service connection name for the GitHub repository
 }
+
+pull_request_trigger = null
 
 schedules = {
   branch_filter = {
