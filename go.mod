@@ -1,7 +1,9 @@
 module github.com/launchbynttdata/tf-azureado-module_primitive-pipelines
 
-go 1.21
+go 1.26.7
+toolchain go1.26.7
 
+tool github.com/golangci/golangci-lint/v2/cmd/golangci-lint
 require (
 	github.com/gruntwork-io/terratest v0.43.12
 	github.com/launchbynttdata/lcaf-component-terratest v1.0.4

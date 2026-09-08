@@ -1,6 +1,7 @@
 package testimpl
 
 import (
+	"context"
 	"fmt"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/launchbynttdata/lcaf-component-terratest/types"
@@ -12,7 +13,7 @@ import (
 
 func TestComposableAzPipeline(t *testing.T, ctx types.TestContext) {
 
-	pipelineID := string(terraform.Output(t, ctx.TerratestTerraformOptions(), "id"))
+	pipelineID := string(terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "id"))
 	fmt.Printf("Pipeline ID from Terraform: %s\n", pipelineID)
 
 	azurePipelineID := getAzureDevopsPipeline("id", pipelineID)
