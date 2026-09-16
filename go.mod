@@ -1,6 +1,6 @@
 module github.com/launchbynttdata/tf-azureado-module_primitive-pipelines
 
-go 1.21
+go 1.26.7
 
 require (
 	github.com/gruntwork-io/terratest v0.43.12

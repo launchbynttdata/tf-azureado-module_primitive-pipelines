@@ -46,7 +46,6 @@ resource "azuredevops_build_definition" "build_definition" {
         batch                            = var.ci_trigger.override.batch
         max_concurrent_builds_per_branch = var.ci_trigger.override.max_concurrent_builds_per_branch
         polling_interval                 = var.ci_trigger.override.polling_interval
-        polling_job_id                   = var.ci_trigger.override.polling_job_id
         dynamic "branch_filter" {
           for_each = var.ci_trigger.override.branch_filter != null ? [var.ci_trigger.override.branch_filter] : []
           content {
