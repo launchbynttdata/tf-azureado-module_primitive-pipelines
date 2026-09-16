@@ -69,8 +69,8 @@ variable "schedules" {
   type = object({
     days_to_build              = list(string)
     schedule_only_with_changes = optional(bool)
-    start_hours                = optional(string)
-    start_minutes              = optional(string)
+    start_hours                = optional(number)
+    start_minutes              = optional(number)
     time_zone                  = optional(string)
     branch_filter = optional(object({
       include = optional(list(string))
